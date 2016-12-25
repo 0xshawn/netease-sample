@@ -1,24 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { Jsonp, URLSearchParams, RequestMethod, RequestOptions, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class MusicService {
-
-  private url: string = 'http://www.baidu.com';
+  private URL: string = environment.neteaseMusicURL;
 
   constructor(private jsonp: Jsonp) {
   }
 
-  search() {
+  search(name: string = null,
+         callback: string = null,
+         onlySong: boolean = true,
+         limit: number = 3,
+         offset: number = 0) {
+
     console.log('> Music Service: search');
 
-    let url = 'http://baidu.com';
-    let params = new URLSearchParams();
-    params.set('format', 'json');
-    params.set('callback', 'JSONP_CALLBACK');
+    let searchUrl = `${this.URL}/api/search/suggest/web`;
+    let data = {
+      s: name,
+      limit,
+      type: 1,
+      offset
+    };
 
     return this.jsonp
-      .get(url)
+      .get(searchUrl, data)
       .map(response => <string[]> response.json()[1]);
   }
 }

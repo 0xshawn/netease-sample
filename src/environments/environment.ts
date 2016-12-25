@@ -3,6 +3,17 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
+let url: 'http://http://music.163.com';
+
 export const environment = {
-  production: false
+  production: false,
+  neteaseMusicURL: url,
+  globalOption: {
+    headers: {
+      'Origin': url,
+      'Referer': url,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    proxy: false
+  }
 };
