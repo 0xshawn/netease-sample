@@ -9,14 +9,14 @@ export class MusicService {
   constructor(private jsonp: Jsonp) {
   }
 
-  getMusic() {
-    console.log('> Music Service: getMusic');
+  search() {
+    console.log('> Music Service: search');
 
     let url = 'http://baidu.com';
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
-    // TODO: Add error handling
+
     return this.jsonp
       .get(url)
       .map(response => <string[]> response.json()[1]);
