@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MusicService } from './services/music.service';
-import 'rxjs-operators';
+import './rxjs-operators';
 
 @Component({
   selector: 'app-root',
